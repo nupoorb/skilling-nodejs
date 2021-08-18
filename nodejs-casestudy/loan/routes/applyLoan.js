@@ -6,10 +6,12 @@ const router = express.Router();
 
 const service = require('../services/applyLoanService.js');
 const auth = require('../middleware/auth.js');
+const repoUser = require('../../login/services/repo.js');
 
-router.post('/apply', auth, async(req, res) => {
+router.post('/apply',auth, async(req, res) => {
     const record = req.body;
-    record.user = req.user._id;
+    const id = req.user;
+    record.user = id
     const message = service.applyLoan(record);
     debug(message);
     res.send(message);

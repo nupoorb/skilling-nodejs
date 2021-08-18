@@ -6,19 +6,24 @@ const router = express.Router();
 
 const service = require('../services/accountService');
 const auth = require('../middleware/auth.js');
+const repoUser = require('../../login/services/repo.js');
 
 
 
-router.post('/update', auth, async(req, res) => {
+router.post('/update', auth,async(req, res) => {
     const record = req.body;
-    record.user = req.user._id;
+    const id = req.user;
+    record.user = id;
+   
     const message = await service.updateCustomer(record);
+    
     debug(message);
     res.send(message);
 });
 
-router.get('/viewDetails', auth, async(req, res) => {
-    const message = await service.viewCustomerDetails(req.user);
+router.get('/viewDetails',auth, async(req, res) => {
+    const id = req.user;
+    const message = await service.viewCustomerDetails(id);
     debug(req.user);
     res.send(message);
 });

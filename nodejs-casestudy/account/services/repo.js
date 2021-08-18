@@ -49,7 +49,12 @@ async function getCustomer(user){
     if(!customer) return;
     return customer;
 }
+async function getUser(user){
+    const foundUser = await User.findOne({username: user.username});
+    return foundUser;
+}
 
 exports.updateCustomer = updateCustomer;
 exports.getCustomer = getCustomer;
 exports.saveCustomer = saveCustomer;
+exports.getUser = getUser;

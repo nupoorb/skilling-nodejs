@@ -3,6 +3,7 @@ const Joi = require('joi');
 const repo = require('./repo.js');
 const model  = require('../models/user');
 const jwt = require('jsonwebtoken');
+const debug = require('debug')('app:basic');
 
 function validateLoginDetails(user){
     return Joi.validate(model.validate(user), model.User);
@@ -30,9 +31,11 @@ async function registerUser(body){
     if(result.error){
         return result.error.details[0].message;
     }
-    const userExists = await repo.getUser(body.username)
+    
+    const userExists = await repo.userExists(body);
+    debug(userExists);
     if(userExists){
-        console.log(userExists)
+        console.log(userExists);
         return 'User already exists';
     }
 

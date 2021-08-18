@@ -27,5 +27,13 @@ async function getLoan(user){
     return loan;
 }
 
+async function getUser(user){
+    const foundUser = await User.findOne({username: user.username});
+    return foundUser;
+}
+
+
+
 exports.saveLoan = saveLoan;
 exports.getLoan = getLoan;
+exports.getUser = getUser;
