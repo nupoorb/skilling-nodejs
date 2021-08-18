@@ -33,6 +33,7 @@ function validateUser(user){
         username: Joi.string().min(5).max(20).required(),
         password: Joi.string().min(5).max(255).required()
     }
+    return Joi.validate(user,schema);
 }
 
 exports.User = User;

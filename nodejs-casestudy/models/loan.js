@@ -41,7 +41,7 @@ function validateLoan(loan){
         interest: Joi.number().min(0).required(),
         duration: Joi.number().min(1).required(),
     }
-    return schema;
+    return Joi.validate(loan, schema);
 }
 
 exports.Loan = Loan;

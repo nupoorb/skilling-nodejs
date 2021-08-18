@@ -68,10 +68,11 @@ function validateCustomer(customer){
         country: Joi.string().min(4).max(20).required(),
         email: Joi.string().min(4).max(20).required(),
         pan: Joi.string().min(6).max(6).required(),
+        contact: Joi.string().required(),
         dob: Joi.required(),
         account_type: Joi.string().min(4).max(20).required()
     }
-    return schema;
+    return Joi.validate(customer, schema);
 }
 
 exports.Customer = Customer;

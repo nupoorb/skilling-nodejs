@@ -4,9 +4,10 @@ const config = require('config');
 
 const express = require('express');
 const mongoose = require('mongoose');
-const login = require('./login/routes/login.js');
-const account = require('./account/routes/account.js');
-const applyLoan = require('./loan/routes/applyLoan.js');
+// const routes = require('./routes/route.js');
+ const route = require('./routes/route.js');
+// const account = require('./account/routes/account.js');
+// const applyLoan = require('./loan/routes/applyLoan.js');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger');
 
@@ -27,9 +28,10 @@ mongoose.connect('mongodb://localhost/nodejs', {
     .catch(err => startup('Could not connect to MongoDB...'));
 
 app.use(express.json());
-app.use('/', login);
-app.use('/account', account);
-app.use('/loans', applyLoan);
+app.use('/', route);
+// app.use('/', login);
+// app.use('/account', account);
+// app.use('/loans', applyLoan);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
