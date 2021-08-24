@@ -151,7 +151,7 @@ async function applyLoan(body, user){
     return saved;
 }
 
-async function updateCustomer(body, user){
+async function updateCustomerDetails(body, user){
     const validated = customerModel.validate(body);
     if(validated.error) throw new BaseError(400, validated.error.details[0].message);
 
@@ -161,7 +161,7 @@ async function updateCustomer(body, user){
         customer.user = user;
         await saveCustomer(customer);
     }else{
-        await repo.updateCustomer(customer);
+        await updateCustomer(customer);
     }
 }
 
@@ -170,9 +170,14 @@ async function viewCustomerDetails(user){
     return details;
 }
 
+exports.userExists = userExists;
+exports.getUser = getUser;
+exports.saveUser = saveUser;
+exports.getLoan = getLoan;
+
 exports.loginUser = loginUser;
 exports.registerUser = registerUser;
 exports.viewLoans = viewLoans;
 exports.applyLoan = applyLoan;
-exports.updateCustomer = updateCustomer;
+exports.updateCustomerDetails = updateCustomerDetails;
 exports.viewCustomerDetails = viewCustomerDetails;

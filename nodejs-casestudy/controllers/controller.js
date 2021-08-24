@@ -59,7 +59,7 @@ async function applyLoan(req, res){
 }
 
 async function updateCustomer(req, res){
-    await service.updateCustomer(req.body, req.user)
+    await service.updateCustomerDetails(req.body, req.user)
     .then(() => {
         res.status(200).send('Customer details updated');
     }).catch((error) => {

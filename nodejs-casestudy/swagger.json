@@ -110,7 +110,97 @@
           }
         }
       }
+    },
+
+    "/applyLoan": {
+      "post": {
+        "tags": [
+          "Loan"
+        ],
+        "description": "Apply loan",
+        "parameters": [
+          {
+            "name": "loan",
+            "in": "body",
+            "description": "Loan details",
+            "schema": {
+              "$ref": "#/definitions/Loan"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Applied for loan",
+            "$ref": "#/definitions/Loan"
+          }
+        }
+      }
+    },
+    "/viewLoans": {
+      "get": {
+        "tags": [
+          "Loan"
+        ],
+        "description": "View loans",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Viewing loans"
+          }
+        }
+      }
+    },
+
+    "/updateDetails": {
+      "post": {
+        "tags": [
+          "Details"
+        ],
+        "description": "Update details",
+        "parameters": [
+          {
+            "name": "update",
+            "in": "body",
+            "description": "User details",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Details updated"
+          }
+        }
+      }
+    },
+    "/viewDetails": {
+      "get": {
+        "tags": [
+          "Details"
+        ],
+        "description": "View details",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Viewing details",
+            "$ref": "#/definitions/Customer"
+          }
+        }
+      }
     }
+
+    
     
     
   },
@@ -127,10 +217,79 @@
           "uniqueItems": true
         },
         "password": {
-          "type": "string",
-          "uniqueItems": true
+          "type": "string"
+        }
+      }
+    },
+    "Loan": {
+      "required" : [
+        "loan_type",
+        "loan_amount",
+        "date",
+        "interest",
+        "duration"
+      ],
+      "properties":{
+        "loan_type": {
+          "type" : "string"
+        },
+        "loan_amount": {
+            "type": "number"
+        },
+        "date": {
+            "type": "date"
+            
+        },
+        "interest": {
+            "type": "number"
+        },
+        "duration":  {
+            "type": "number"
+        }
+      }
+    },
+    "Customer": {
+      "required": [
+          "name",
+          "address",
+          "state",
+          "country",
+          "email",
+          "pan",
+          "contact",
+          "dob",
+          "account_type"
+      ],
+      "properties":{
+        "name": {
+          "type": "string"
+        },
+        "address":{
+            "type": "string"
+        },
+        "state" : {
+            "type": "string"
+        },
+        "country": {
+            "type": "string"
+        },
+        "email":{
+            "type": "string"
+        },
+        "pan":{
+            "type": "string"
+        },
+        "contact": {
+            "type": "string"
+        },
+        "dob": {
+            "type": "Date"
+        },
+        "account_type": {
+            "type" : "string"
         }
       }
     }
   }
+ 
 }

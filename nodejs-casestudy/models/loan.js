@@ -39,7 +39,7 @@ function validateLoan(loan){
         loan_amount: Joi.number().min(100).required(),
         date: Joi.required(),
         interest: Joi.number().min(0).required(),
-        duration: Joi.number().min(1).required(),
+        duration: Joi.number().min(1).required()
     }
     return Joi.validate(loan, schema);
 }
